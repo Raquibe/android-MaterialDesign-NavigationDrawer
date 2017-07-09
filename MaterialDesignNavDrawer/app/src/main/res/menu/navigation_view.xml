@@ -50,6 +50,12 @@
                     android:title="@string/menu_left_share"/>
 
                 <item
+                    android:id="@+id/navigation_item_rate"
+                    android:title="@string/menu_left_rate"
+                    android:icon="@drawable/main_star"
+                    android:visible="false"/>
+
+                <item
                     android:id="@+id/navigation_item_status"
                     android:title="@string/home_status"
                     android:icon="@drawable/main_status"/>
