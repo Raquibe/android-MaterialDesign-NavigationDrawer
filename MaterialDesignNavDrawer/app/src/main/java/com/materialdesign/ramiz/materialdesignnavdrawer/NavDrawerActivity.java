@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -61,6 +62,14 @@ public class NavDrawerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        //if nav drawer is open then hide action items for the current view
+        boolean isDrawerOpen = mDrawerLayout.isDrawerOpen(mNavigationView);
+        //menu.findItem(R.id.action_websearch).setVisible(!isDrawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
     private void setListeners() {
         //add listener to navigation view
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -89,6 +98,10 @@ public class NavDrawerActivity extends AppCompatActivity {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+                //invalidate action bar menu items so that it
+                //calls onPrepareOptionsMenu in which new
+                //items can be added according to selection made by user
+                invalidateOptionsMenu();
             }
 
             //called when nav drawer is completely open
@@ -96,6 +109,10 @@ public class NavDrawerActivity extends AppCompatActivity {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+                //invalidate action bar menu items so that it
+                //calls onPrepareOptionsMenu in which we hide
+                //action bar menu items if drawer is open
+                invalidateOptionsMenu();
             }
         };
 
