@@ -4,10 +4,12 @@
         <item
             android:id="@+id/navigation_item_remotes"
             android:checked="true"
+            android:icon="@drawable/main_remote"
             android:title="@string/home_remotes"/>
 
         <item
             android:id="@+id/navigation_item_servers"
-            android:title="@string/home_servers"/>
+            android:title="@string/home_servers"
+            android:icon="@drawable/main_server"/>
     </group>
 </menu>
