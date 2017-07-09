@@ -11,8 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import static com.materialdesign.ramiz.materialdesignnavdrawer.R.id.toolbar;
-
 public class NavDrawerActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
