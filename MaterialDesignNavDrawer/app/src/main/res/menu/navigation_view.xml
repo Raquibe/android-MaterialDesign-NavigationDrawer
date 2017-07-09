@@ -11,5 +11,51 @@
             android:id="@+id/navigation_item_servers"
             android:title="@string/home_servers"
             android:icon="@drawable/main_server"/>
+
+        <item
+            android:id="@+id/navigation_subheader_customize"
+            android:title="@string/menu_left_customize">
+            <menu>
+                <item
+                    android:id="@+id/navigation_item_preferences"
+                    android:icon="@drawable/main_settings"
+                    android:title="@string/home_preferences"/>
+
+                <item
+                    android:id="@+id/navigation_item_widgets"
+                    android:title="@string/home_widgets"
+                    android:icon="@drawable/main_widgets"/>
+
+                <item
+                    android:id="@+id/navigation_item_quick_actions"
+                    android:title="@string/home_quick_actions"
+                    android:icon="@drawable/main_quick"/>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/navigation_subheader_other"
+            android:title="@string/menu_left_other">
+            <menu>
+                <item
+                    android:id="@+id/navigation_item_tell_friends"
+                    android:icon="@drawable/main_share"
+                    android:title="@string/menu_left_share"/>
+
+                <item
+                    android:id="@+id/navigation_item_status"
+                    android:title="@string/home_status"
+                    android:icon="@drawable/main_status"/>
+
+                <item
+                    android:id="@+id/navigation_item_exit"
+                    android:title="@string/home_exit"
+                    android:icon="@drawable/main_exit"
+                    />
+            </menu>
+        </item>
+
     </group>
+
+
 </menu>
