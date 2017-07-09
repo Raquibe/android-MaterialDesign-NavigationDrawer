@@ -17,6 +17,7 @@ public class NavDrawerActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mDrawerToggle;
+    private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class NavDrawerActivity extends AppCompatActivity {
 
         //assign listeners to all the views we are interested in
         setListeners();
+
+        setTitle(R.string.home_remotes);
     }
 
     private void setListeners() {
@@ -36,9 +39,15 @@ public class NavDrawerActivity extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                //check/highlight the item selected
                 item.setCheckable(true);
-
+                //update activity title
+                setTitle(item.getTitle());
+                //close nav drawer
                 mDrawerLayout.closeDrawer(GravityCompat.START);
+
+                //notify to the system that we have handled
+                //the event by sending true
                 return true;
             }
         });
@@ -71,9 +80,19 @@ public class NavDrawerActivity extends AppCompatActivity {
     private void setupToolbar() {
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
+    @Override
+    public void setTitle(CharSequence title) {
+        getSupportActionBar().setTitle(title);
+        mTitle = title;
+    }
 
+    @Override
+    public void setTitle(int titleId) {
+        getSupportActionBar().setTitle(titleId);
+        mTitle = getString(titleId);
+    }
 }
