@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MaterialDesignNavDrawer</string>
+
+    <!-- Home / Menu -->
+    <string name="home_remotes">Remotes</string>
+    <string name="home_servers">Servers</string>
+    <string name="home_preferences">Preferences</string>
+    <string name="home_editor">Editor</string>
+    <string name="home_widgets">Widgets</string>
+    <string name="home_quick_actions">Quick Actions</string>
+    <string name="home_help">Help</string>
+    <string name="home_exit">Exit</string>
+    <string name="home_upgrade">Upgrade</string>
+    <string name="home_status">Status</string>
 </resources>
