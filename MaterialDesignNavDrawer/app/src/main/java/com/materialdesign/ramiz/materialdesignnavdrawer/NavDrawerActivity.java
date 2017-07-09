@@ -154,6 +154,10 @@ public class NavDrawerActivity extends AppCompatActivity {
         return mDrawerToggle.isDrawerIndicatorEnabled();
     }
 
+    protected void checkNavDrawerItem(@IdRes int itemId) {
+        mNavigationView.getMenu().findItem(itemId).setChecked(true);
+    }
+
     private void setupToolbar() {
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
