@@ -12,4 +12,12 @@
     <string name="home_exit">Exit</string>
     <string name="home_upgrade">Upgrade</string>
     <string name="home_status">Status</string>
+
+    <!-- Menus -->
+    <string name="menu_left_customize">Customize</string>
+    <string name="menu_left_servers">Saved Servers</string>
+    <string name="menu_left_servers_none">No servers added</string>
+    <string name="menu_left_other">Other</string>
+    <string name="menu_left_share">Tell Friends</string>
+    <string name="menu_left_rate">Rate App</string>
 </resources>
