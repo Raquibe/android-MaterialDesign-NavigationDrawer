@@ -1,6 +1,7 @@
 package com.materialdesign.ramiz.materialdesignnavdrawer;
 
 import android.content.res.Configuration;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,7 @@ public class NavDrawerActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mTitle;
+    private @IdRes int mSelectedNavItemId = R.id.navigation_item_remotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,10 @@ public class NavDrawerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 //check/highlight the item selected
                 item.setCheckable(true);
+
+                //save the selected menu item id
+                mSelectedNavItemId = item.getItemId();
+
                 //update activity title
                 setTitle(item.getTitle());
                 //close nav drawer
