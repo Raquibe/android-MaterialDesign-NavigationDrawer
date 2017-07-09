@@ -132,8 +132,12 @@ public class NavDrawerActivity extends AppCompatActivity {
      * of hamburger icon on action bar clicking which
      * will open nav drawer
      */
-    private void setHamburgerIconEnabled(boolean isEnabled) {
+    private void setDrawerIndicatorIconEnabled(boolean isEnabled) {
         mDrawerToggle.setDrawerIndicatorEnabled(isEnabled);
+    }
+    
+    public boolean isDrawerIndicatorIconEnabled() {
+        return mDrawerToggle.isDrawerIndicatorEnabled();
     }
 
     private void setupToolbar() {
@@ -153,10 +157,6 @@ public class NavDrawerActivity extends AppCompatActivity {
     public void setTitle(int titleId) {
         getSupportActionBar().setTitle(titleId);
         mTitle = getString(titleId);
-    }
-
-    public boolean isHamburgerIconEnabled() {
-        return mDrawerToggle.isDrawerIndicatorEnabled();
     }
 
     /**
