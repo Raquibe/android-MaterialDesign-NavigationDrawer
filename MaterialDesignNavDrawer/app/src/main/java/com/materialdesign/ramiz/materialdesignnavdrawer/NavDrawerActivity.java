@@ -43,7 +43,7 @@ public class NavDrawerActivity extends AppCompatActivity {
             }
         });
 
-        //initialize ActoinBarDrawerToggleListener to listen
+        //initialize ActionBarDrawerToggleListener to listen
         //for navigation drawer open/close events. It also handles
         //opening nav drawer on hamburger icon click
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open,
