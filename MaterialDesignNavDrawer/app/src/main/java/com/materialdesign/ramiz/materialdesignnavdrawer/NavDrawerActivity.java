@@ -35,6 +35,10 @@ public class NavDrawerActivity extends AppCompatActivity {
             mNavigationView.getMenu().findItem(R.id.navigation_item_upgrade).setVisible(true);
         }
 
+        if (License.showRateOption()) {
+            mNavigationView.getMenu().findItem(R.id.navigation_item_rate).setVisible(true);
+        }
+
         //assign listeners to all the views we are interested in
         setListeners();
         setTitle(R.string.home_remotes);
