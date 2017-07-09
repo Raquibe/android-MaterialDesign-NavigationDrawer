@@ -1,6 +1,8 @@
 package com.materialdesign.ramiz.materialdesignnavdrawer;
 
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +34,31 @@ public class NavDrawerActivity extends AppCompatActivity {
         setListeners();
 
         setTitle(R.string.home_remotes);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        //handle your action bar items click
+        return super.onOptionsItemSelected(item);
     }
 
     private void setListeners() {
