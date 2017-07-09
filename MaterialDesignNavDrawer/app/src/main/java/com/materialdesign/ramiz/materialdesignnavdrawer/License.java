@@ -6,6 +6,10 @@ package com.materialdesign.ramiz.materialdesignnavdrawer;
 
 public class License {
     public static boolean isUnlocked() {
+        return false;
+    }
+
+    public static boolean showRateOption() {
         return true;
     }
 }
