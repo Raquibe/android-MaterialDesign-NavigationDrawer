@@ -13,6 +13,13 @@
             android:icon="@drawable/main_server"/>
 
         <item
+            android:id="@+id/navigation_item_upgrade"
+            android:title="@string/home_upgrade"
+            android:icon="@drawable/main_upgrade"
+            android:visible="false"
+            />
+
+        <item
             android:id="@+id/navigation_subheader_customize"
             android:title="@string/menu_left_customize">
             <menu>
