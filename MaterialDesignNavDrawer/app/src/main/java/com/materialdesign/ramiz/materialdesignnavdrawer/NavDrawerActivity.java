@@ -31,6 +31,10 @@ public class NavDrawerActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView)findViewById(R.id.navigation_view);
 
+        if (!License.isUnlocked()) {
+            mNavigationView.getMenu().findItem(R.id.navigation_item_upgrade).setVisible(true);
+        }
+
         //assign listeners to all the views we are interested in
         setListeners();
         setTitle(R.string.home_remotes);
