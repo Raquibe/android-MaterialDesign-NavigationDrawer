@@ -21,6 +21,7 @@ public class NavDrawerActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mTitle;
+    private boolean mIsHamburgerIconEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,28 +34,37 @@ public class NavDrawerActivity extends AppCompatActivity {
 
         //assign listeners to all the views we are interested in
         setListeners();
-
         setTitle(R.string.home_remotes);
+        enableHamburgerIcon(mToolbar);
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        //if hamburger icon is enabled the it means we have
+        //registered a drawer toggle listener so we should
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        if (mIsHamburgerIconEnabled) {
+            mDrawerToggle.syncState();
+        }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        //if hamburger icon is enabled the it means we have
+        //registered a drawer toggle listener so we should
+        //update its configuation
+        if (mIsHamburgerIconEnabled) {
+            mDrawerToggle.onConfigurationChanged(newConfig);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (mIsHamburgerIconEnabled && mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
@@ -87,11 +97,13 @@ public class NavDrawerActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
+    private void enableHamburgerIcon(Toolbar toolbar) {
         //initialize ActionBarDrawerToggleListener to listen
         //for navigation drawer open/close events. It also handles
         //opening nav drawer on hamburger icon click
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open,
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open,
                 R.string.drawer_close) {
             //called when nav drawer is completely closed
             //and settled
@@ -119,6 +131,7 @@ public class NavDrawerActivity extends AppCompatActivity {
         //add listener to navigation drawer, to be called
         //when drawer opens or closes
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mIsHamburgerIconEnabled = true;
     }
 
     private void setupToolbar() {
@@ -138,5 +151,9 @@ public class NavDrawerActivity extends AppCompatActivity {
     public void setTitle(int titleId) {
         getSupportActionBar().setTitle(titleId);
         mTitle = getString(titleId);
+    }
+
+    public boolean isHamburgerIconEnabled() {
+        return mIsHamburgerIconEnabled;
     }
 }
