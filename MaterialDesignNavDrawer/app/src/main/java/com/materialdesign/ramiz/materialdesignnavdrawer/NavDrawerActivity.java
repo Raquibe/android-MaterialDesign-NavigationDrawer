@@ -34,7 +34,6 @@ public class NavDrawerActivity extends AppCompatActivity {
         //assign listeners to all the views we are interested in
         setListeners();
         setTitle(R.string.home_remotes);
-        setHamburgerIconEnabled(false);
     }
 
     @Override
