@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:minHeight="?android:attr/actionBarSize"-->
-    <!--android:background="@color/colorAccent_light_theme"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:paddingBottom="16dp"-->
-    <!--android:paddingLeft="6dp"-->
-    <!--android:paddingRight="6dp"-->
-    <!--android:paddingTop="40dp">-->
-
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
@@ -42,4 +30,3 @@
         android:src="@drawable/main_down"/>
 
 </merge>
-<!--</LinearLayout>-->
