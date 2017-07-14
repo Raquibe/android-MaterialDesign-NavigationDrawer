@@ -8,6 +8,7 @@
     android:layout_height="@dimen/height_nav_drawer_header_layout"
     android:paddingLeft="6dp"
     android:paddingRight="6dp"
+    android:gravity="center"
     android:paddingTop="@dimen/padding_top_nav_drawer">
 
 </com.materialdesign.ramiz.materialdesignnavdrawer.NavDrawerHeaderView>
