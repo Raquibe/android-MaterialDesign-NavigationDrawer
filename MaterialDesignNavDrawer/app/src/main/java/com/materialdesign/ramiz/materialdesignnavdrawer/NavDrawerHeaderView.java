@@ -104,6 +104,6 @@ public class NavDrawerHeaderView extends LinearLayout {
     }
 
     public interface OnItemSelectedListener{
-        void onItemSelected();
+        void onItemSelected(BackendHost backendHost);
     }
 }
