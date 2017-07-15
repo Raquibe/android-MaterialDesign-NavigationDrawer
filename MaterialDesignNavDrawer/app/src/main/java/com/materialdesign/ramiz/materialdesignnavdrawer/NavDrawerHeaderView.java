@@ -51,6 +51,10 @@ public class NavDrawerHeaderView extends LinearLayout {
         init();
     }
 
+    /**
+     * Initializes this view by inflating layout resource
+     * and setting views references
+     */
     public void init() {
         setGravity(Gravity.CENTER);
         setOrientation(HORIZONTAL);
@@ -62,6 +66,7 @@ public class NavDrawerHeaderView extends LinearLayout {
 
         popupMenu = new PopupMenu(getContext(), this);
         setListeners();
+        handleEmptyHostsListState();
         populateDummyData();
     }
 
@@ -80,13 +85,41 @@ public class NavDrawerHeaderView extends LinearLayout {
         populateData(backendHosts);
     }
 
+    /**
+     * Initializes NavDrawerHeaderView with data passed
+     * @param backendHosts  list of hosts to load into view
+     */
     public void populateData(@NonNull ArrayList<BackendHost> backendHosts) {
+        //let's clear existing data
         this.backendHosts.clear();
+        this.popupMenu.getMenu().clear();
+        //add new data
         this.backendHosts.addAll(backendHosts);
 
-        for (int i = 0; i < backendHosts.size(); ++i) {
-            popupMenu.getMenu().add(0, i, i, backendHosts.get(i).name);
+        //if there are no hosts then update
+        //header view to show no servers text
+        if (this.backendHosts.isEmpty()) {
+            handleEmptyHostsListState();
+            return;
         }
+
+        //if there are more than 1 hosts in the list
+        //then display add a popup menu
+        if (this.backendHosts.size() > 1) {
+            //make down arrow icon image view visible to indicate
+            //that there is a popup menu
+            downIconImageView.setVisibility(VISIBLE);
+            //initialize popup menu with new data
+            for (int i = 0; i < backendHosts.size(); ++i) {
+                popupMenu.getMenu().add(0, i, i, backendHosts.get(i).name);
+            }
+        } else {
+            //hide down arrow icon as there is only one item
+            downIconImageView.setVisibility(INVISIBLE);
+        }
+
+        //update header view to show first host's details
+        updateNavDrawerHeaderView(backendHosts.get(0));
     }
     
     public void setListeners() {
@@ -96,7 +129,7 @@ public class NavDrawerHeaderView extends LinearLayout {
         super.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!backendHosts.isEmpty()) {
+                if (backendHosts.size() > 1) {
                     popupMenu.show();
                 }
             }
@@ -111,7 +144,7 @@ public class NavDrawerHeaderView extends LinearLayout {
                 updateNavDrawerHeaderView(backendHost);
 
 
-                //notify the listener
+                //notify the listener, if any
                 if (onItemSelectedListener != null) {
                     onItemSelectedListener.onItemSelected(backendHost);
                 }
@@ -121,6 +154,21 @@ public class NavDrawerHeaderView extends LinearLayout {
         });
     }
 
+    /**
+     * This method updates the view with empty state text and icon
+     * It updates the view that user sees when opening nav drawer and not the popup menu
+     */
+    private void handleEmptyHostsListState() {
+        serverIconImageView.setImageResource(R.drawable.main_wifi);
+        serverNameTextView.setText(getContext().getString(R.string.menu_left_servers_none));
+        downIconImageView.setVisibility(INVISIBLE);
+    }
+
+    /**
+     * This method updates the header view with data passed.
+     * It updates the view that user sees when opening nav drawer and not the popup menu
+     * @param backendHost host model with which to update header view
+     */
     private void updateNavDrawerHeaderView(BackendHost backendHost) {
         //update icon and title of parent view to which this PopMenu is anchored
         serverNameTextView.setText(backendHost.name);
