@@ -62,12 +62,37 @@ public class NavDrawerHeaderView extends LinearLayout {
 
         popupMenu = new PopupMenu(getContext(), this);
         setListeners();
+        populateDummyData();
     }
 
-    @Override
-    public void onClick(View view) {
-        Toast.makeText(getContext(), "Header clicked", Toast.LENGTH_SHORT).show();
+    public void populateDummyData() {
+        ArrayList<BackendHost> backendHosts = new ArrayList<>();
+        BackendHost backendHost = new BackendHost();
+        backendHost.name = "Ramiz-MBP";
+        backendHost.client = Preferences.Clients.BLUETOOTH;
+
+        BackendHost backendHost1 = new BackendHost();
+        backendHost1.name = "Ramiz-MBP-Wifi";
+        backendHost1.client = Preferences.Clients.TCP;
+
+        backendHosts.add(backendHost);
+        backendHosts.add(backendHost1);
+        populateData(backendHosts);
+    }
+
+    public void populateData(@NonNull ArrayList<BackendHost> backendHosts) {
+        this.backendHosts.clear();
+        this.backendHosts.addAll(backendHosts);
+
+        for (int i = 0; i < backendHosts.size(); ++i) {
+            popupMenu.getMenu().add(0, i, i, backendHosts.get(i).name);
+        }
+    }
+    
     public void setListeners() {
+        //register listener directly with parent class
+        //as we are overriding setOnClickListener method
+        //in current class
         super.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
