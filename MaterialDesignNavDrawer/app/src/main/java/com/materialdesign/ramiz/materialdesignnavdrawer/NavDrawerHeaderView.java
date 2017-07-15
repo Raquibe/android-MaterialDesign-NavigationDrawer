@@ -186,8 +186,7 @@ public class NavDrawerHeaderView extends LinearLayout {
 
     //we don't anyone else to listen to this event because
     // we provide a custom OnItemSelectedListener for outside world
-    // so
-    //we have overridden it with empty body
+    // so we have overridden it with empty body
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
 
