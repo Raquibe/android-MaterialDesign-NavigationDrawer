@@ -1,7 +1,7 @@
 package com.materialdesign.ramiz.materialdesignnavdrawer;
 
 import android.content.res.Configuration;
-import android.os.PersistableBundle;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -11,11 +11,10 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class NavDrawerActivity extends AppCompatActivity {
 
@@ -110,6 +109,10 @@ public class NavDrawerActivity extends AppCompatActivity {
 
                 //update activity title
                 setTitle(item.getTitle());
+
+                //call the method responsible for handling click
+                onNavDrawerItemSelected(item.getItemId());
+
                 //close nav drawer
                 mDrawerLayout.closeDrawer(GravityCompat.START);
 
@@ -193,6 +196,16 @@ public class NavDrawerActivity extends AppCompatActivity {
     public void setTitle(int titleId) {
         getSupportActionBar().setTitle(titleId);
         mTitle = getString(titleId);
+    }
+
+    /**
+     * Method responsible for handling nav drawer items clicks.
+     * If any child classes wants to handle nav drawer item clicks
+     * then it should override this method
+     * @param selectedItemId id of the item selected
+     */
+    public void onNavDrawerItemSelected(@IdRes int selectedItemId) {
+        Toast.makeText(this, "Navigation Item click", Toast.LENGTH_SHORT).show();
     }
 
     /**
