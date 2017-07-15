@@ -108,15 +108,8 @@ public class NavDrawerHeaderView extends LinearLayout {
             public boolean onMenuItemClick(MenuItem item) {
                 //get the selected host
                 BackendHost backendHost = backendHosts.get(item.getItemId());
+                updateNavDrawerHeaderView(backendHost);
 
-                //update icon and title of parent view to which this PopMenu is anchored
-                serverNameTextView.setText(backendHost.name);
-                //check if host is Wifi or bluetooth and pick the right icon
-                if (backendHost.client.equals(Preferences.Clients.BLUETOOTH)) {
-                    serverIconImageView.setImageResource(R.drawable.main_bt);
-                } else {
-                    serverIconImageView.setImageResource(R.drawable.main_wifi);
-                }
 
                 //notify the listener
                 if (onItemSelectedListener != null) {
@@ -126,6 +119,17 @@ public class NavDrawerHeaderView extends LinearLayout {
                 return true;
             }
         });
+    }
+
+    private void updateNavDrawerHeaderView(BackendHost backendHost) {
+        //update icon and title of parent view to which this PopMenu is anchored
+        serverNameTextView.setText(backendHost.name);
+        //check if host is Wifi or bluetooth and pick the right icon
+        if (backendHost.client.equals(Preferences.Clients.BLUETOOTH)) {
+            serverIconImageView.setImageResource(R.drawable.main_bt);
+        } else {
+            serverIconImageView.setImageResource(R.drawable.main_wifi);
+        }
     }
 
     //we don't anyone else to listen to this event because
