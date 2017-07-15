@@ -101,11 +101,28 @@ public class NavDrawerHeaderView extends LinearLayout {
                 }
             }
         });
-        
+
+        //register listener with our PopMenu that appears when user clicks servers header view
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getContext(), "Menu item click", Toast.LENGTH_SHORT).show();
+                //get the selected host
+                BackendHost backendHost = backendHosts.get(item.getItemId());
+
+                //update icon and title of parent view to which this PopMenu is anchored
+                serverNameTextView.setText(backendHost.name);
+                //check if host is Wifi or bluetooth and pick the right icon
+                if (backendHost.client.equals(Preferences.Clients.BLUETOOTH)) {
+                    serverIconImageView.setImageResource(R.drawable.main_bt);
+                } else {
+                    serverIconImageView.setImageResource(R.drawable.main_wifi);
+                }
+
+                //notify the listener
+                if (onItemSelectedListener != null) {
+                    onItemSelectedListener.onItemSelected(backendHost);
+                }
+
                 return true;
             }
         });
