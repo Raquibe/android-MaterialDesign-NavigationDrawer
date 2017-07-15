@@ -97,14 +97,6 @@ public class NavDrawerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        //if nav drawer is open then hide action items for the current view
-        boolean isDrawerOpen = mDrawerLayout.isDrawerOpen(mNavigationView);
-        //menu.findItem(R.id.action_websearch).setVisible(!isDrawerOpen);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
     private void setListeners() {
         //add listener to navigation view
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
