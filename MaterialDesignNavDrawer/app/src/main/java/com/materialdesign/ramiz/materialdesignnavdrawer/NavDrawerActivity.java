@@ -2,6 +2,7 @@ package com.materialdesign.ramiz.materialdesignnavdrawer;
 
 import android.content.res.Configuration;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -27,7 +28,9 @@ public class NavDrawerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav_drawer);
+        //call super method directly because we are overriding
+        //this method in current class
+        super.setContentView(R.layout.activity_nav_drawer);
         setupToolbar();
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -44,6 +47,18 @@ public class NavDrawerActivity extends AppCompatActivity {
         //assign listeners to all the views we are interested in
         setListeners();
         setTitle(R.string.home_remotes);
+    }
+
+    /**
+     * Overriding this method here so that child classes don't overwrite
+     * this classes content view and still can call this method
+     * to add their content view to nav drawer
+     * @param layoutResID
+     */
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        View contentView = getLayoutInflater().inflate(layoutResID, null, false);
+        mDrawerLayout.addView(contentView, 0);
     }
 
     @Override
@@ -139,6 +154,7 @@ public class NavDrawerActivity extends AppCompatActivity {
         //add listener to navigation drawer, to be called
         //when drawer opens or closes
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
     }
 
     /**
