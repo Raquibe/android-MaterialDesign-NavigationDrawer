@@ -1,6 +1,7 @@
 package com.materialdesign.ramiz.materialdesignnavdrawer;
 
 import android.content.res.Configuration;
+import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -46,6 +47,7 @@ public class NavDrawerActivity extends AppCompatActivity {
 
         //assign listeners to all the views we are interested in
         setListeners();
+        addActionBarDrawerToggle(mToolbar);
         setTitle(R.string.home_remotes);
     }
 
@@ -67,7 +69,9 @@ public class NavDrawerActivity extends AppCompatActivity {
         //if hamburger icon is enabled the it means we have
         //registered a drawer toggle listener so we should
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        if (mDrawerToggle != null) {
+            mDrawerToggle.syncState();
+        }
     }
 
     @Override
@@ -76,14 +80,16 @@ public class NavDrawerActivity extends AppCompatActivity {
         //if hamburger icon is enabled the it means we have
         //registered a drawer toggle listener so we should
         //update its configuration
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        if (mDrawerToggle != null) {
+            mDrawerToggle.onConfigurationChanged(newConfig);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
@@ -120,11 +126,13 @@ public class NavDrawerActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
+    protected void addActionBarDrawerToggle(Toolbar toolbar) {
         //initialize ActionBarDrawerToggleListener to listen
         //for navigation drawer open/close events. It also handles
         //opening nav drawer on hamburger icon click
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open,
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open,
                 R.string.drawer_close) {
             //called when nav drawer is completely closed
             //and settled
@@ -163,11 +171,13 @@ public class NavDrawerActivity extends AppCompatActivity {
      * will open nav drawer
      */
     protected void setDrawerIndicatorIconEnabled(boolean isEnabled) {
-        mDrawerToggle.setDrawerIndicatorEnabled(isEnabled);
+        if (mDrawerToggle != null) {
+            mDrawerToggle.setDrawerIndicatorEnabled(isEnabled);
+        }
     }
     
     protected boolean isDrawerIndicatorIconEnabled() {
-        return mDrawerToggle.isDrawerIndicatorEnabled();
+        return mDrawerToggle != null && mDrawerToggle.isDrawerIndicatorEnabled();
     }
 
     protected void checkNavDrawerItem(@IdRes int itemId) {
