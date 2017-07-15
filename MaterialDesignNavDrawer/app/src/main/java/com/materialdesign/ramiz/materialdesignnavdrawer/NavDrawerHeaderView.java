@@ -103,6 +103,14 @@ public class NavDrawerHeaderView extends LinearLayout {
             return;
         }
 
+        //update PopMenu based on new data passed
+        updatePopupMenuView();
+
+        //update header view to show first host's details
+        updateNavDrawerHeaderView(backendHosts.get(0));
+    }
+
+    private void updatePopupMenuView() {
         //if there are more than 1 hosts in the list
         //then display add a popup menu
         if (this.backendHosts.size() > 1) {
@@ -117,11 +125,8 @@ public class NavDrawerHeaderView extends LinearLayout {
             //hide down arrow icon as there is only one item
             downIconImageView.setVisibility(INVISIBLE);
         }
-
-        //update header view to show first host's details
-        updateNavDrawerHeaderView(backendHosts.get(0));
     }
-    
+
     public void setListeners() {
         //register listener directly with parent class
         //as we are overriding setOnClickListener method
