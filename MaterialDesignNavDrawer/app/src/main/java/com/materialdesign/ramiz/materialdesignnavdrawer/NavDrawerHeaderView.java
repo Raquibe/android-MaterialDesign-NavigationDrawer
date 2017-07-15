@@ -1,15 +1,20 @@
 package com.materialdesign.ramiz.materialdesignnavdrawer;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.PopupMenu;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * This is a custom view for Navigation Drawer header view. It displays a list of
@@ -18,10 +23,15 @@ import android.widget.Toast;
  * Created by ramiz on 7/15/17.
  */
 
-public class NavDrawerHeaderView extends LinearLayout implements View.OnClickListener {
+public class NavDrawerHeaderView extends LinearLayout {
     private ImageView serverIconImageView;
     private TextView serverNameTextView;
     private ImageView downIconImageView;
+    @NonNull
+    private PopupMenu popupMenu;
+
+    @NonNull
+    private ArrayList<BackendHost> backendHosts = new ArrayList<>();
 
     @Nullable
     private OnItemSelectedListener onItemSelectedListener = null;
@@ -50,12 +60,30 @@ public class NavDrawerHeaderView extends LinearLayout implements View.OnClickLis
         serverNameTextView = findViewById(R.id.text_view_server_name);
         downIconImageView = findViewById(R.id.image_view_icon_down);
 
-        super.setOnClickListener(this);
+        popupMenu = new PopupMenu(getContext(), this);
+        setListeners();
     }
 
     @Override
     public void onClick(View view) {
         Toast.makeText(getContext(), "Header clicked", Toast.LENGTH_SHORT).show();
+    public void setListeners() {
+        super.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!backendHosts.isEmpty()) {
+                    popupMenu.show();
+                }
+            }
+        });
+        
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getContext(), "Menu item click", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
     }
 
     //we don't anyone else to listen to this event because
