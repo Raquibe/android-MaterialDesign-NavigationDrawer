@@ -22,9 +22,12 @@ public class NavDrawerActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar mToolbar;
+    @Nullable
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mTitle;
     private @IdRes int mSelectedNavItemId = R.id.navigation_item_remotes;
+    @NonNull
+    private NavDrawerHeaderView mNavDrawerHeaderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class NavDrawerActivity extends AppCompatActivity {
         if (License.showRateOption()) {
             mNavigationView.getMenu().findItem(R.id.navigation_item_rate).setVisible(true);
         }
+
+        mNavDrawerHeaderView = (NavDrawerHeaderView) mNavigationView.getHeaderView(0);
 
         //assign listeners to all the views we are interested in
         setListeners();
@@ -180,8 +185,8 @@ public class NavDrawerActivity extends AppCompatActivity {
      * @param hosts list of hosts to update header with
      */
     protected void updateNavDrawerHeaderView(ArrayList<BackendHost> hosts) {
-        NavDrawerHeaderView navDrawerHeaderView = (NavDrawerHeaderView) mNavigationView.getHeaderView(0);
-        navDrawerHeaderView.populateData(hosts);
+        mNavDrawerHeaderView.populateData(hosts);
+    }
     }
 
     /**
