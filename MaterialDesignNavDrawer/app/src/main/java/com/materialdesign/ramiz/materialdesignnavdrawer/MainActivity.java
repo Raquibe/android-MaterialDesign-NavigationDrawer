@@ -51,4 +51,10 @@ public class MainActivity extends NavDrawerActivity {
     public void onNavDrawerItemSelected(@IdRes int selectedItemId) {
         Toast.makeText(this, "Navigation item click", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    protected void onNavDrawerHeaderViewItemClick(BackendHost host) {
+        super.onNavDrawerHeaderViewItemClick(host);
+        Toast.makeText(this, "User selected: " + host.name, Toast.LENGTH_SHORT).show();
+    }
 }
