@@ -119,6 +119,18 @@ public class NavDrawerActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void setTitle(CharSequence title) {
+        getSupportActionBar().setTitle(title);
+        mTitle = title;
+    }
+
+    @Override
+    public void setTitle(int titleId) {
+        getSupportActionBar().setTitle(titleId);
+        mTitle = getString(titleId);
+    }
+
     protected void addActionBarDrawerToggle(Toolbar toolbar) {
         //initialize ActionBarDrawerToggleListener to listen
         //for navigation drawer open/close events. It also handles
@@ -166,25 +178,13 @@ public class NavDrawerActivity extends AppCompatActivity {
             mDrawerToggle.setDrawerIndicatorEnabled(isEnabled);
         }
     }
-    
+
     protected boolean isDrawerIndicatorIconEnabled() {
         return mDrawerToggle != null && mDrawerToggle.isDrawerIndicatorEnabled();
     }
 
     protected void checkNavDrawerItem(@IdRes int itemId) {
         mNavigationView.getMenu().findItem(itemId).setChecked(true);
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-        getSupportActionBar().setTitle(title);
-        mTitle = title;
-    }
-
-    @Override
-    public void setTitle(int titleId) {
-        getSupportActionBar().setTitle(titleId);
-        mTitle = getString(titleId);
     }
 
     /**
