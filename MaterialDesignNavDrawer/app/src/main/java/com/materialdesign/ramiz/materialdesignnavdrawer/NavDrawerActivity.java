@@ -131,6 +131,11 @@ public class NavDrawerActivity extends AppCompatActivity {
         mTitle = getString(titleId);
     }
 
+    /**
+     * Call this method to add a nav drawer indicator icon (Hamburger menu icon)
+     * to the toolbar
+     * @param toolbar the toolbar to which to add the drawer indicator icon
+     */
     protected void addActionBarDrawerToggle(Toolbar toolbar) {
         //initialize ActionBarDrawerToggleListener to listen
         //for navigation drawer open/close events. It also handles
@@ -169,8 +174,8 @@ public class NavDrawerActivity extends AppCompatActivity {
     }
 
     /**
-     * Calling this method enable the display
-     * of hamburger icon on action bar clicking which
+     * Child classes can call this method to enable the display
+     * of hamburger icon on action bar by clicking which
      * will open nav drawer
      */
     protected void setDrawerIndicatorIconEnabled(boolean isEnabled) {
@@ -179,10 +184,18 @@ public class NavDrawerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Child classes can call this method to check if nav drawer indicator is enabled
+     * @return boolean depending on whether drawer indicator is enabled or not
+     */
     protected boolean isDrawerIndicatorIconEnabled() {
         return mDrawerToggle != null && mDrawerToggle.isDrawerIndicatorEnabled();
     }
 
+    /**
+     * Call this method to highlight/check a navigation drawer item
+     * @param itemId id of the item to highlight
+     */
     protected void checkNavDrawerItem(@IdRes int itemId) {
         mNavigationView.getMenu().findItem(itemId).setChecked(true);
     }
