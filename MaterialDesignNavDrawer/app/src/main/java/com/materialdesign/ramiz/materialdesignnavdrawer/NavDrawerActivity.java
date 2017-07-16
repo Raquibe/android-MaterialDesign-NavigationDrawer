@@ -15,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class NavDrawerActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -47,8 +49,8 @@ public class NavDrawerActivity extends AppCompatActivity {
     }
 
     /**
-     * Overriding this method here so that child classes don't overwrite
-     * this classes content view and still can call this method
+     * Overridden this method here so that child classes don't overwrite
+     * this class's content view and still can call this method
      * to add their content view to nav drawer
      * @param layoutResID
      */
@@ -171,6 +173,15 @@ public class NavDrawerActivity extends AppCompatActivity {
         //when drawer opens or closes
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+    }
+
+    /**
+     * Updates the content of header view of nav drawer with this new data
+     * @param hosts list of hosts to update header with
+     */
+    protected void updateNavDrawerHeaderView(ArrayList<BackendHost> hosts) {
+        NavDrawerHeaderView navDrawerHeaderView = (NavDrawerHeaderView) mNavigationView.getHeaderView(0);
+        navDrawerHeaderView.populateData(hosts);
     }
 
     /**
