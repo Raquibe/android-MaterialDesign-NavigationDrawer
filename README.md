@@ -1,7 +1,7 @@
 # android-MaterialDesign-NavigationDrawer
 Android Material design navigation drawer that can be easily integrated with any existing activities. 
 
-![screenshot](screenshot.png)
+<img src="screenshot.png" width=300 height=500>
 
 ## Motivation
 My motivation for working on this project was that I had to work on an app that was using an old nav drawer and I wanted to integration new material design nav drawer without affecting any existing activities.
