@@ -28,32 +28,10 @@ public class MainActivity extends NavDrawerActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
     @Override
     public void onNavDrawerItemSelected(@IdRes int selectedItemId) {
-        if (selectedItemId == R.id.navigation_item_remotes) {
-            Toast.makeText(this, "loading remote fragment", Toast.LENGTH_SHORT).show();
-            loadRemotesFragment(true);
-        } else if (selectedItemId == R.id.navigation_item_servers) {
-            ServerFragment serverFragment = ServerFragment.newInstance("", "");
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frame_layout_content, serverFragment)
-                    .addToBackStack(getString(R.string.home_servers))
-                    .commit();
-        }
-    }
-
-    private void loadRemotesFragment(boolean addToBackStack) {
-        RemotesFragment remotesFragment = RemotesFragment.newInstance("", "");
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout_content, remotesFragment);
-        if (addToBackStack) {
-            fragmentTransaction.addToBackStack(getString(R.string.home_remotes));
-        }
-
-        fragmentTransaction.commit();
+        Toast.makeText(this, "Navigation item click", Toast.LENGTH_SHORT).show();
     }
 }
