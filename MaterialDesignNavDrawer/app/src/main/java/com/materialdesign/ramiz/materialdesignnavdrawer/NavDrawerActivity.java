@@ -7,6 +7,8 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class NavDrawerActivity extends AppCompatActivity {
@@ -31,7 +35,6 @@ public class NavDrawerActivity extends AppCompatActivity {
         //call super method directly because we are overriding
         //this method in current class
         super.setContentView(R.layout.activity_nav_drawer);
-        setupToolbar();
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView)findViewById(R.id.navigation_view);
@@ -46,8 +49,6 @@ public class NavDrawerActivity extends AppCompatActivity {
 
         //assign listeners to all the views we are interested in
         setListeners();
-        addActionBarDrawerToggle(mToolbar);
-        setTitle(R.string.home_remotes);
     }
 
     /**
@@ -205,7 +206,7 @@ public class NavDrawerActivity extends AppCompatActivity {
      * @param selectedItemId id of the item selected
      */
     public void onNavDrawerItemSelected(@IdRes int selectedItemId) {
-        Toast.makeText(this, "Navigation Item click", Toast.LENGTH_SHORT).show();
+
     }
 
     /**
