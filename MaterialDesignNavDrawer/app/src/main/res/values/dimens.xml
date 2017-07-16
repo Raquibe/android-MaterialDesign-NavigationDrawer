@@ -2,4 +2,5 @@
 <resources>
     <dimen name="padding_top_nav_drawer">0dp</dimen>
     <dimen name="height_nav_drawer_header_layout">60dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
