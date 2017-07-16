@@ -174,6 +174,22 @@ public class NavDrawerActivity extends AppCompatActivity {
     }
 
     /**
+     * Locks the nav drawer so that it does not open either when swiping from left
+     * or by clicking on nav drawer indicator icon
+     */
+    protected void lockNavDrawer() {
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    /**
+     * Unlocks the nav drawer if locked so that it does open either by swiping from left
+     * or by clicking on nav drawer indicator icon
+     */
+    protected void unlockNavDrawer() {
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+    }
+
+    /**
      * Child classes can call this method to enable the display
      * of hamburger icon on action bar by clicking which
      * will open nav drawer
