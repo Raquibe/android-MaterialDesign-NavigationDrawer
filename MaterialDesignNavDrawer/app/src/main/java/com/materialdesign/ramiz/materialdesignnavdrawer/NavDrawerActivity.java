@@ -124,6 +124,13 @@ public class NavDrawerActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        mNavDrawerHeaderView.setOnItemSelectedListener(new NavDrawerHeaderView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(BackendHost backendHost) {
+                onNavDrawerHeaderViewItemClick(backendHost);
+            }
+        });
     }
 
     @Override
@@ -187,6 +194,15 @@ public class NavDrawerActivity extends AppCompatActivity {
     protected void updateNavDrawerHeaderView(ArrayList<BackendHost> hosts) {
         mNavDrawerHeaderView.populateData(hosts);
     }
+
+
+    /**
+     * This method is called when user selects an item from nav drawer header view
+     * popup menu. Child classes can override this method to listen for this event
+     * @param host host object which is selected by user
+     */
+    protected void onNavDrawerHeaderViewItemClick(BackendHost host) {
+
     }
 
     /**
