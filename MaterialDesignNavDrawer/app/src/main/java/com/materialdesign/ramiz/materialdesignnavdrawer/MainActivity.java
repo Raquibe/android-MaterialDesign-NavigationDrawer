@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends NavDrawerActivity {
 
@@ -28,6 +28,23 @@ public class MainActivity extends NavDrawerActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        populateDummyDataIntoHeaderView();
+    }
+
+    public void populateDummyDataIntoHeaderView() {
+        ArrayList<BackendHost> backendHosts = new ArrayList<>();
+        BackendHost backendHost = new BackendHost();
+        backendHost.name = "Ramiz-MBP";
+        backendHost.client = Preferences.Clients.BLUETOOTH;
+
+        BackendHost backendHost1 = new BackendHost();
+        backendHost1.name = "Ramiz-MBP-Wifi";
+        backendHost1.client = Preferences.Clients.TCP;
+
+        backendHosts.add(backendHost);
+        backendHosts.add(backendHost1);
+        updateNavDrawerHeaderView(backendHosts);
     }
 
     @Override
