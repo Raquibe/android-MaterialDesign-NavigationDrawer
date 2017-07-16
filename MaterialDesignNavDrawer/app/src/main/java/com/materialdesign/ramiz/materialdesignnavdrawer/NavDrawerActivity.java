@@ -175,13 +175,6 @@ public class NavDrawerActivity extends AppCompatActivity {
         mNavigationView.getMenu().findItem(itemId).setChecked(true);
     }
 
-    private void setupToolbar() {
-        mToolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-    }
-
     @Override
     public void setTitle(CharSequence title) {
         getSupportActionBar().setTitle(title);
