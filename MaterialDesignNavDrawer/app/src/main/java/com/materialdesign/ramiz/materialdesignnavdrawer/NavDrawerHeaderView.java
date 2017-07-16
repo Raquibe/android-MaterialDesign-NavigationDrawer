@@ -66,7 +66,7 @@ public class NavDrawerHeaderView extends LinearLayout {
         popupMenu = new PopupMenu(getContext(), this);
         setListeners();
         handleEmptyHostsListState();
-        populateDummyData();
+//        populateDummyDataIntoHeaderView();
     }
 
     public void populateDummyData() {
